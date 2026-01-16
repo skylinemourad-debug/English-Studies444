@@ -1,0 +1,105 @@
+:root {
+  --primary: #1e3a8a;
+  --secondary: #7c3aed;
+  --bg-gradient: linear-gradient(-45deg, #0f172a, #1e3a8a, #3b82f6, #1e40af);
+}
+
+body, html { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; min-height: 100vh; }
+
+.main-wrapper {
+  background: var(--bg-gradient);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+header {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px; text-align: center; color: white;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* --- PAGE 1: Welcome --- */
+#welcomePage {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; flex-grow: 1;
+  text-align: center; color: white; animation: fadeIn 0.8s ease;
+}
+
+.welcome-card {
+  background: rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 20px;
+  backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.2);
+}
+
+.welcome-card i.main-logo { font-size: 80px; margin-bottom: 20px; color: #fff; }
+
+.action-btn {
+  padding: 12px 35px; border-radius: 50px; border: none; cursor: pointer;
+  font-weight: 600; transition: 0.3s; margin: 10px; text-transform: uppercase;
+}
+
+.btn-login { background: white; color: var(--primary); }
+.btn-signup { background: var(--primary); color: white; }
+
+/* --- PAGE 2: Forms --- */
+.form-container {
+  display: none; max-width: 500px; margin: 30px auto; padding: 25px;
+  background: white; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+input, select { width: 100%; padding: 11px; margin: 7px 0; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
+.phone-row { display: flex; gap: 8px; }
+.phone-row select { width: 135px; }
+
+/* --- PAGE 3: Dashboard --- */
+#dashboard { display: none; max-width: 1100px; margin: 20px auto; padding: 20px; }
+
+.news-ticker {
+  background: #fbbf24; color: #000; padding: 12px; border-radius: 12px;
+  margin-bottom: 20px; font-weight: 600; display: flex; align-items: center;
+}
+
+.grid-menu {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;
+}
+
+.card {
+  background: white; padding: 25px; border-radius: 15px; text-align: center;
+  transition: 0.3s; cursor: pointer; border-bottom: 4px solid var(--primary);
+}
+.card:hover { transform: translateY(-10px); background: #f0f4ff; }
+.card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
+
+.sub-page { display: none; background: white; padding: 30px; border-radius: 20px; color: #333; }
+.module-box {
+  background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px;
+  margin: 10px 0; border-radius: 10px;
+}
+
+.admin-section {
+  background: rgba(255,255,255,0.1); margin-top: 30px; padding: 20px; border-radius: 15px; color: white;
+}
+.badge-principal { background: #ef4444; padding: 4px 10px; border-radius: 5px; font-weight: bold; margin-right: 5px; }
+.badge-other { background: #4b5563; padding: 4px 10px; border-radius: 5px; margin-left: 5px; font-size: 0.85rem; }
+
+.announcement-item { border-left: 4px solid var(--primary); padding: 10px; margin-bottom: 10px; background: #f1f5f9; }
+
+.link-item {
+  display: flex; align-items: center; gap: 10px; padding: 12px;
+  background: #f1f5f9; border-radius: 8px; margin-bottom: 10px;
+  text-decoration: none; color: #333; font-weight: 600; transition: 0.3s;
+}
+.link-item:hover { background: #e2e8f0; transform: translateX(10px); }
+.link-item i.fa-whatsapp { color: #25d366; }
+.link-item i.fa-google { color: #4285f4; }
+
+.hidden { display: none; }
+.back-btn { background: #64748b; color: white; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; margin-bottom: 15px; }
+.footer-copy { text-align: center; color: rgba(255,255,255,0.6); padding: 20px; font-size: 0.9rem; }

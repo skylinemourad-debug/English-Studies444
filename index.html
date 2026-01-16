@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Studies Portal | Mourad Project</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="main-wrapper">
+  <header>
+    <h1><i class="fas fa-graduation-cap"></i> English Studies Portal</h1>
+  </header>
+
+  <div id="welcomePage">
+    <div class="welcome-card">
+      <i class="fas fa-book-reader main-logo"></i>
+      <h2>Welcome Student!</h2>
+      <p>Your Gateway to English Excellence</p>
+      <div class="btn-group">
+        <button class="action-btn btn-login" onclick="showForm('login')">Login</button>
+        <button class="action-btn btn-signup" onclick="showForm('signup')">Sign Up</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="authContainer" class="form-container">
+    <button class="back-btn" onclick="resetToWelcome()">← Back</button>
+    
+    <div id="loginForm" class="hidden">
+      <h2>Login</h2>
+      <input type="email" placeholder="Email Address">
+      <input type="password" placeholder="Password">
+      <button class="action-btn btn-signup" style="width:100%" onclick="loginSuccess()">Enter Dashboard</button>
+    </div>
+
+    <div id="signupForm" class="hidden">
+      <h2>Create New Account</h2>
+      <div style="display:flex; gap:10px"><input type="text" placeholder="First Name"><input type="text" placeholder="Last Name"></div>
+      <input type="text" placeholder="Massar Code (e.g. R123456)">
+      <input type="text" placeholder="Apogée Number">
+      <div class="phone-row">
+        <select>
+          <option value="+212">🇲🇦 MA +212</option>
+          <option value="+962">🇯🇴 JO +962</option>
+          <option value="+970">🇵🇸 PS +970</option>
+          <option value="+974">🇶🇦 QA +974</option>
+          <option value="+971">🇦🇪 AE +971</option>
+        </select>
+        <input type="tel" placeholder="Phone Number">
+      </div>
+      <input type="email" placeholder="Email Address">
+      <input type="password" placeholder="Create Password">
+      <select id="groupSelect">
+        <option value="">Select Your Group</option>
+        <option value="GR1">Group 1 (GR1)</option>
+        <option value="GR2">Group 2 (GR2)</option>
+      </select>
+      <button class="action-btn btn-signup" style="width:100%" onclick="loginSuccess()">Register & Enter</button>
+    </div>
+  </div>
+
+  <div id="dashboard">
+    <div class="news-ticker">
+      <i class="fas fa-bullhorn" style="margin-right:10px;"></i>
+      <marquee>📢 News: New Study Materials and Last Year Exams are now available. | 📢 Join our WhatsApp Groups for instant updates.</marquee>
+    </div>
+
+    <div id="mainGrid" class="grid-menu">
+      <div class="card" onclick="openSub('modules')"><i class="fas fa-book"></i><h3>Modules</h3></div>
+      <div class="card" onclick="openSub('exams')"><i class="fas fa-file-signature"></i><h3>Last Year Exams</h3></div>
+      <div class="card" onclick="openSub('timetable')"><i class="fas fa-calendar-alt"></i><h3>Timetable</h3></div>
+      <div class="card" onclick="openSub('makeup')"><i class="fas fa-clock"></i><h3>Makeup</h3></div>
+      <div class="card" onclick="openSub('all_ann')"><i class="fas fa-list-ul"></i><h3>Announcements</h3></div>
+      <div class="card" onclick="openSub('space')"><i class="fas fa-link"></i><h3>Student Space</h3></div>
+    </div>
+
+    <div id="subPage" class="sub-page">
+      <button class="back-btn" onclick="closeSub()">← Back to Menu</button>
+      <div id="subContent"></div>
+    </div>
+
+    <div class="admin-section" id="adminArea"></div>
+  </div>
+
+  <div class="footer-copy">Mourad Project's @ 2026</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
