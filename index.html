@@ -6,7 +6,105 @@
   <title>English Studies Portal | Mourad Project</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --secondary: #7c3aed;
+      --bg-gradient: linear-gradient(-45deg, #0f172a, #1e3a8a, #3b82f6, #1e40af);
+    }
+
+    body, html { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; min-height: 100vh; }
+
+    .main-wrapper {
+      background: var(--bg-gradient);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 20px; text-align: center; color: white;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* --- PAGE 1: Welcome --- */
+    #welcomePage {
+      display: flex; flex-direction: column; align-items: center; justify-content: center; flex-grow: 1;
+      text-align: center; color: white; animation: fadeIn 0.8s ease;
+    }
+
+    .welcome-card {
+      background: rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 20px;
+      backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .welcome-card i.main-logo { font-size: 80px; margin-bottom: 20px; color: #fff; }
+
+    .action-btn {
+      padding: 12px 35px; border-radius: 50px; border: none; cursor: pointer;
+      font-weight: 600; transition: 0.3s; margin: 10px; text-transform: uppercase;
+    }
+
+    .btn-login { background: white; color: var(--primary); }
+    .btn-signup { background: var(--primary); color: white; }
+
+    /* --- PAGE 2: Forms --- */
+    .form-container {
+      display: none; max-width: 500px; margin: 30px auto; padding: 25px;
+      background: white; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    input, select { width: 100%; padding: 11px; margin: 7px 0; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
+    .phone-row { display: flex; gap: 8px; }
+    .phone-row select { width: 135px; }
+
+    /* --- PAGE 3: Dashboard --- */
+    #dashboard { display: none; max-width: 1100px; margin: 20px auto; padding: 20px; }
+    
+    .news-ticker {
+      background: #fbbf24; color: #000; padding: 12px; border-radius: 12px;
+      margin-bottom: 20px; font-weight: 600; display: flex; align-items: center;
+    }
+
+    .grid-menu {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;
+    }
+
+    .card {
+      background: white; padding: 25px; border-radius: 15px; text-align: center;
+      transition: 0.3s; cursor: pointer; border-bottom: 4px solid var(--primary);
+    }
+    .card:hover { transform: translateY(-10px); background: #f0f4ff; }
+    .card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
+
+    .sub-page { display: none; background: white; padding: 30px; border-radius: 20px; color: #333; }
+    .module-box {
+      background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px;
+      margin: 10px 0; border-radius: 10px;
+    }
+
+    .admin-section {
+      background: rgba(255,255,255,0.1); margin-top: 30px; padding: 20px; border-radius: 15px; color: white;
+    }
+    .badge-principal { background: #ef4444; padding: 4px 10px; border-radius: 5px; font-weight: bold; }
+    .badge-other { background: #4b5563; padding: 4px 10px; border-radius: 5px; margin-left: 5px; font-size: 0.85rem; }
+
+    .announcement-item { border-left: 4px solid var(--primary); padding: 10px; margin-bottom: 10px; background: #f1f5f9; }
+
+    .hidden { display: none; }
+    .back-btn { background: #64748b; color: white; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; margin-bottom: 15px; }
+    .footer-copy { text-align: center; color: rgba(255,255,255,0.6); padding: 20px; font-size: 0.9rem; }
+  </style>
 </head>
 <body>
 
@@ -32,14 +130,17 @@
     
     <div id="loginForm" class="hidden">
       <h2>Login</h2>
-      <input type="email" placeholder="Email Address">
-      <input type="password" placeholder="Password">
+      <input type="email" id="logEmail" placeholder="Email Address">
+      <input type="password" id="logPass" placeholder="Password">
       <button class="action-btn btn-signup" style="width:100%" onclick="loginSuccess()">Enter Dashboard</button>
     </div>
 
     <div id="signupForm" class="hidden">
       <h2>Create New Account</h2>
-      <div style="display:flex; gap:10px"><input type="text" placeholder="First Name"><input type="text" placeholder="Last Name"></div>
+      <div style="display:flex; gap:10px">
+        <input type="text" placeholder="First Name">
+        <input type="text" placeholder="Last Name">
+      </div>
       <input type="text" placeholder="Massar Code (e.g. R123456)">
       <input type="text" placeholder="Apogée Number">
       <div class="phone-row">
@@ -66,12 +167,11 @@
   <div id="dashboard">
     <div class="news-ticker">
       <i class="fas fa-bullhorn" style="margin-right:10px;"></i>
-      <marquee>📢 News: New Study Materials and Last Year Exams are now available. | 📢 Join our WhatsApp Groups for instant updates.</marquee>
+      <marquee>📢 News: New Study Materials uploaded for Spoken English. | 📢 Final Exams Timetable coming soon. | 📢 Check Makeup sessions for updates.</marquee>
     </div>
 
     <div id="mainGrid" class="grid-menu">
       <div class="card" onclick="openSub('modules')"><i class="fas fa-book"></i><h3>Modules</h3></div>
-      <div class="card" onclick="openSub('exams')"><i class="fas fa-file-signature"></i><h3>Last Year Exams</h3></div>
       <div class="card" onclick="openSub('timetable')"><i class="fas fa-calendar-alt"></i><h3>Timetable</h3></div>
       <div class="card" onclick="openSub('makeup')"><i class="fas fa-clock"></i><h3>Makeup</h3></div>
       <div class="card" onclick="openSub('all_ann')"><i class="fas fa-list-ul"></i><h3>Announcements</h3></div>
@@ -89,6 +189,75 @@
   <div class="footer-copy">Mourad Project's @ 2026</div>
 </div>
 
-<script src="script.js"></script>
+<script>
+  function showForm(type) {
+    document.getElementById('welcomePage').style.display = 'none';
+    document.getElementById('authContainer').style.display = 'block';
+    const loginF = document.getElementById('loginForm');
+    const signupF = document.getElementById('signupForm');
+    if(type === 'login') {
+      loginF.classList.remove('hidden'); signupF.classList.add('hidden');
+    } else {
+      signupF.classList.remove('hidden'); loginF.classList.add('hidden');
+    }
+  }
+
+  function resetToWelcome() {
+    document.getElementById('welcomePage').style.display = 'flex';
+    document.getElementById('authContainer').style.display = 'none';
+  }
+
+  function loginSuccess() {
+    const gr = document.getElementById('groupSelect').value || "GR1";
+    document.getElementById('authContainer').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    
+    const adminArea = document.getElementById('adminArea');
+    if(gr === "GR1") {
+      adminArea.innerHTML = `<h4><i class="fas fa-user-shield"></i> GR1 Management</h4>
+      <p>Admin Principal: <span class="badge-principal">Mourad</span></p>
+      <p>Others Admins: <span class="badge-other">Moneim</span><span class="badge-other">Soufiane</span><span class="badge-other">Mohamed</span><span class="badge-other">Samia</span></p>`;
+    } else {
+      adminArea.innerHTML = `<h4><i class="fas fa-user-shield"></i> GR2 Management</h4>
+      <p>Admin Principal: <span class="badge-principal">Hajar</span></p>
+      <p>Others Admins: <span class="badge-other">Marwa</span></p>`;
+    }
+  }
+
+  function openSub(type) {
+    document.getElementById('mainGrid').classList.add('hidden');
+    const subPage = document.getElementById('subPage');
+    const content = document.getElementById('subContent');
+    subPage.style.display = 'block';
+
+    if(type === 'modules') {
+      content.innerHTML = `<h2>Study Modules</h2>
+        <div class="module-box"><h4>Spoken English</h4>
+          <ul><li><a href="#"><i class="fas fa-file-pdf"></i> phonetics_part1.pdf</a></li></ul>
+        </div>
+        <div class="module-box"><h4>Paragraph Writing</h4>
+          <ul><li><a href="#"><i class="fas fa-file-word"></i> essay_structure.docx</a></li></ul>
+        </div>`;
+    } else if(type === 'all_ann') {
+      content.innerHTML = `<h2>All Announcements</h2>
+        <div class="announcement-item"><strong>2026-01-15:</strong> New Semester 2 materials are now live.</div>
+        <div class="announcement-item"><strong>2026-01-05:</strong> Happy New Year to all students!</div>`;
+    } else if(type === 'timetable') {
+      content.innerHTML = `<h2>Weekly Timetable</h2><div style="border:2px dashed #ccc; padding:40px; text-align:center;">Timetable Image or Table Content Here</div>`;
+    } else if(type === 'makeup') {
+      content.innerHTML = `<h2>Makeup Sessions</h2><div class="announcement-item"><strong>2026-02-10:</strong> Paragraph Writing - Room 8 (10 AM)</div>`;
+    } else if(type === 'space') {
+      content.innerHTML = `<h2>Direct Links</h2>
+        <a href="https://ent.uiz.ac.ma" target="_blank" style="display:block; margin:10px 0;">1. ENT Platform Portal</a>
+        <a href="http://www.flshm.ac.ma/convocations" target="_blank" style="display:block; margin:10px 0;">2. FLSHM Convocation</a>`;
+    }
+  }
+
+  function closeSub() {
+    document.getElementById('mainGrid').classList.remove('hidden');
+    document.getElementById('subPage').style.display = 'none';
+  }
+</script>
+
 </body>
 </html>
